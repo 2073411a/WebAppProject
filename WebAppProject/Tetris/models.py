@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     picture = models.ImageField(upload_to='profile_images', blank=True)
+    bio = models.CharField(max_length=1024) # I Don't know how long this should be?
     def __unicode__(self):
 		return self.user.username
 
@@ -15,10 +16,9 @@ class Leaderboard(models.Model):
     def __unicode__(self):
         return self.seed
 
-#class Challange(models.Model):
-    #challanger = models.OneToOneField(User)
-    #challanged = models.OneToOneField(User)
-    #seed = models.CharField(max_length=128, unique=True)
-    #score = models.IntegerField(default = 0)
-    #def __unicode__(self):
-    #    return self.seed + self.challanger.username + self.challanged.username
+class Score(models.Model):
+    seed = models.CharField(max_length=128)
+    user = models.CharField(max_length=128)
+    score = models.IntegerField(default = 0)
+    def __unicode__(self):
+		return self.user + '/' + seed
