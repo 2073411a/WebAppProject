@@ -52,5 +52,5 @@ def challenge(reuest, seed, username):
     return HttpResponse(seed + ":" + username)
 
 @login_required
-def score(request, seed):
+def score(request, seed, score):
     return HttpResponse("TEMP")
