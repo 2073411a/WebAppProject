@@ -21,4 +21,4 @@ class Score(models.Model):
     user = models.CharField(max_length=128)
     score = models.IntegerField(default = 0)
     def __unicode__(self):
-		return self.user + '/' + self.seed
+		return self.user + '/' + seed

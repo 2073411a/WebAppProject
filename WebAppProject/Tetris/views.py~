@@ -19,6 +19,7 @@ def game(request, seed):
     # EDIT FOR BALANCING #
     nopiecestotake = 69
     #-----------------#
+    #MAKE FILE LATER
     f = file("piecelist.txt")
     line = f.readline()
     f.close()
