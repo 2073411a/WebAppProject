@@ -1,5 +1,13 @@
 # WebAppProject
 
+  Currently working on: 
+  # Edit this and add the files you're editing: 
+  # Example: JsTetris.js - Alex
+
+  Meeting times:
+    Mondays, Lab time.
+    Thursdays - 2pm onwards.
+
 To Do list
 
 Top Priority
@@ -21,7 +29,3 @@ Low
 
 Whose on what
   - TODO
-
-  Currently working on: 
-  # Edit this and add the files you're editing: 
-  JsTetris.js - Alex
