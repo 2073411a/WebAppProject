@@ -18,12 +18,21 @@ def game(request, seed):
     # NUMBER BELLOW HOW DEEP TO GO #
     # EDIT FOR BALANCING #
     nopiecestotake = 69
+<<<<<<< HEAD
     #-----------------#
     f = file("piecelist.txt")
     line = f.readline()
     f.close()
+=======
+>>>>>>> 61f39360aa4525d3e1c9bbc7ad4b2ea607457aaf
     pieces = ""
     frontno = 1
+    #-----------------#
+	#Reading the randomised pieces list from the file.
+    f = file("piecelist.txt")
+    line = f.readline()
+    f.close()
+	
     # Make it MUCH easier to compute, might change later if we come up with a more effecit calc
     if len(seed) > 13:
         seed = seed[:13]
@@ -33,12 +42,17 @@ def game(request, seed):
             print "OverFlow"
             frontno -= 1000007
     pointer = frontno
+    
     while len(pieces) < nopiecestotake:
         while pointer >= 1000007:
             pointer -= 1000007
         pieces += line[pointer]
         pointer += frontno
-    return HttpResponse(pieces)
+	
+    returnPieces = ""
+    for p in pieces:
+        returnPieces+=str(p)+","
+    return HttpResponse(returnPieces[:-1])
 
 def leaderboard(request, seed):
     return HttpResponse("TEMP")
