@@ -131,7 +131,7 @@ function Tetris(seed) {
     this.stats = new Stats();
     this.puzzle = null;
     this.area = null;
-
+    var pointer = 0;
     this.unit  = 20; // unit = x pixels
     this.areaX = 20; // area width = x units
     this.areaY = 20; // area height = y units
@@ -142,12 +142,12 @@ function Tetris(seed) {
      * @return void
      * @access public event
      */
-    this.start = function(seed,pointer) {
+    this.start = function(seed) {
         self.reset();
         self.stats.start();
         document.getElementById("tetris-nextpuzzle").style.display = "block";
         self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area");
-        self.puzzle = new Puzzle(self, self.area,pointer,seed);
+        self.puzzle = new Puzzle(self, self.area,seed);
         if (self.puzzle.mayPlace()) {
             self.puzzle.place();
         } else {
@@ -1392,5 +1392,3 @@ if (!String.prototype.format) {
         return s;
     };
 }
-
-
