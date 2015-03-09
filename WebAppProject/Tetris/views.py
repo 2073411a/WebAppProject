@@ -61,6 +61,7 @@ def leaderboard(request, seed):
 def userpage(request, username):
     return HttpResponse("TEMP")
 
+
 def challenge(request, seed, username):
     #Get's best score from user
     leaderboard = Leaderboard.objects.get(seed=seed)
@@ -70,4 +71,5 @@ def challenge(request, seed, username):
 
 @login_required
 def score(request, seed, score):
+    
     return HttpResponse("TEMP")
