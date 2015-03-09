@@ -1,10 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-#from Tetris.models import Page
-#from Tetris.models import Category
-#from Tetris.forms import CategoryForm
-#from Tetris.forms import PageForm
-#from Tetris.forms import UserForm, UserProfileForm
+from Tetris.models import *
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -52,6 +48,14 @@ def game(request, seed):
     return HttpResponse(returnPieces[:-1])
 
 def leaderboard(request, seed):
+    context_dict = {}
+    try:
+        leaderboard = Leaderboard.objects.get(seed=seed)
+        scores = Score.objects.filter(leaderboard = leaderboard).order_by('-score')
+        context_dict['scores'] = scores
+        context_dict['leaderboard'] = leaderboard
+    except leaderboard.DoesNotExist:
+        pass
     return HttpResponse("TEMP")
 
 def userpage(request, username):

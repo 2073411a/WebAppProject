@@ -17,8 +17,8 @@ class Leaderboard(models.Model):
         return self.seed
 
 class Score(models.Model):
-    seed = models.CharField(max_length=128)
-    user = models.CharField(max_length=128)
+    leaderboard = models.ForeignKey(Leaderboard)
+    user = models.ForeignKey(UserProfile)
     score = models.IntegerField(default = 0)
     def __unicode__(self):
 		return self.user + '/' + self.seed
