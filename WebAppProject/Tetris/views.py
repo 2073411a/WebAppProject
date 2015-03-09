@@ -37,8 +37,8 @@ def game(request, seed):
     pointer = frontno
 
     while len(pieces) < nopiecestotake:
-        while pointer >= 1000007:
-            pointer -= 1000007
+        if pointer >= 1000007:
+            pointer = pointer%1000007
         pieces += line[pointer]
         pointer += frontno
 
@@ -61,7 +61,11 @@ def leaderboard(request, seed):
 def userpage(request, username):
     return HttpResponse("TEMP")
 
-def challenge(reuest, seed, username):
+def challenge(request, seed, username):
+    #Get's best score from user
+    leaderboard = Leaderboard.objects.get(seed=seed)
+    user = UserProfile.objects.get(user=username)
+    bestScore = Score.objects.filter(leaderboard = leaderboard).filter(user = user).order_by('-score')[0]
     return HttpResponse(seed + ":" + username)
 
 @login_required
