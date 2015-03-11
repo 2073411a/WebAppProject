@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     #TODO RETURN PAGE
-    return HttpResponse("TEMP")
+    return render(request, 'Tetris/index2.html')
 
 def game(request, seed):
     # IMPORTANT #
