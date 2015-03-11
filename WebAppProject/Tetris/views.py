@@ -66,10 +66,12 @@ def challenge(request, seed, username):
     #Get's best score from user
     leaderboard = Leaderboard.objects.get(seed=seed)
     user = UserProfile.objects.get(user=username)
-    bestScore = Score.objects.filter(leaderboard = leaderboard).filter(user = user).order_by('-score')[0]
+    bestScore = Score.objects.filter(leaderboard=leaderboard).filter(user=user).order_by('-score')[0]
     return HttpResponse(seed + ":" + username)
 
 @login_required
-def score(request, seed, score):
-    
-    return HttpResponse("TEMP")
+def score(request, seed, score, username):
+    l = Leaderboard.objects.get(seed=seed)
+    u = UserProfile.objects.get(user=username)
+    s = Score.objects.get_or_create(leaderboard = l,user = u, score = int(score))
+    return s
