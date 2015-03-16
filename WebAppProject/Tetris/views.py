@@ -8,7 +8,8 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     #TODO RETURN PAGE
     return render(request, 'Tetris/index2.html')
-
+def index1(request):
+    return render(request, 'Tetris/index1.html')
 def game(request, seed):
     # IMPORTANT #
     # NUMBER BELLOW HOW DEEP TO GO #
