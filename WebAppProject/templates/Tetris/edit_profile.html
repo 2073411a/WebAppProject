@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load bootstrap_toolkit %}
+
+{% block body_block %}
+
+<form id="profile_form" method="post" action="/Tetris/add_profile/"
+enctype="multipart/form-data">
+
+{{ form.as_p }}
+
+<!-- Provide a button to click to submit the form. -->
+<input type="submit" name="submit" value="Finish editing profile." />
+</form>
+{% endblock %}

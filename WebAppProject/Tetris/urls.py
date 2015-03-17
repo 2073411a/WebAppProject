@@ -9,6 +9,8 @@ urlpatterns = patterns('',
                        url(r'^game/(?P<seed>[\w\-]+)/(?P<username>[\w\-]+)/$', views.challenge),
                        url(r'^game/(?P<seed>[\w\-]+)/$', views.game),
                        url(r'^leaderboard/(?P<seed>[\w\-]+)/$', views.leaderboard),
+                       url(r'^userpage/$', views.userpage,name="userpage"),
+                       url(r'^#about/$', views.about,name='about'),
                        )
 
 if not settings.DEBUG:
