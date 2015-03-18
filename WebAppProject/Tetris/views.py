@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from Tetris.models import *
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
+from Tetris.forms import *
 
 def index(request):
     #TODO RETURN PAGE
@@ -117,7 +118,13 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileForm()
 
-    # Render the template depending on the context.
+@login_required
+def user_logout(request):
+    # Since we know the user is logged in, we can now just log them out.
+    logout(request)
+
+    # Take the user back to the homepage.
+    return HttpResponseRedirect('/')
 
 @login_required
 def userpage(request):
@@ -149,7 +156,7 @@ def edit_profile(request):
                 return index(request)
     else:
         form = UserProfileForm(request.GET)
-    return render(request, 'Tetris/profile_edit.html', {'form': form})
+    return render(request, 'Tetris/edit_profile.html', {'form': form})
 
 
 def challenge(request, seed, username):

@@ -11,7 +11,12 @@ urlpatterns = patterns('',
                        url(r'^leaderboard/(?P<seed>[\w\-]+)/$', views.leaderboard),
                        url(r'^userpage/$', views.userpage,name="userpage"),
                        url(r'^#about/$', views.about,name='about'),
+                       url(r'^edit_profile/$', views.edit_profile, name='edit_profile'),
                        )
 
-if not settings.DEBUG:
-        urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG:
+    urlpatterns += patterns(
+        'django.views.static',
+        (r'^media/(?P<path>.*)',
+         "serve",
+        {'document_root': settings.MEDIA_ROOT}), )

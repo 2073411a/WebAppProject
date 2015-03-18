@@ -41,7 +41,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
+                <a class="navbar-brand page-scroll" href="/">
                 <span class="light"><img src="{{STATIC_URL|default:"/static/"}}images/tetrivs.png" %}" alt="TetriVS logo" /> </span>
                 </a>
             </div>
@@ -51,7 +51,7 @@
                 <ul class="nav navbar-nav">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li>
-                        <a class="page-scroll" href="play">Play</a>
+                        <a class="page-scroll" href="/Tetris/play">Play</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="/Tetris/#about">About</a>
@@ -59,6 +59,9 @@
                     {% if user.is_authenticated %}
                     <li>
                         <a href="{% url 'userpage' %}">Userpage</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'auth_logout' %}?next=/">Logout</a>
                     </li>
                     {% else %}
                     <li>

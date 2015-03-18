@@ -3,7 +3,7 @@ from models import *
 
 # Register your models here.
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('bio',)
+    list_display = ('bio','picture')
 
 class LeaderAdmin(admin.ModelAdmin):
     list_display = ('seed',)

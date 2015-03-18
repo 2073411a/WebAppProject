@@ -1,11 +1,30 @@
 {% extends "base.html" %}
+
 {% load i18n %}
 
-{% block content %}
-<form method="post" action=".">
-  {% csrf_token %}
-  {{ form.as_p }}
+{% block body_block %}
 
-  <input type="submit" value="{% trans 'Submit' %}" />
-</form>
+<!-- Intro Header -->
+    <header class="intro" >
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">Register here</h1>
+                        
+                        <form method="post" action="." display: inline-block style= text-align:center>
+  						{% csrf_token %}
+  						{{ form.as_p }}
+						  <input type="submit" value="{% trans 'Submit' %}" class="btn btn-default />
+						</form>
+						                        
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
 {% endblock %}

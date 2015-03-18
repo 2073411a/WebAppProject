@@ -1,15 +1,31 @@
 {% extends "base.html" %}
 
-{% load bootstrap_toolkit %}
-
 {% block body_block %}
 
-<form id="profile_form" method="post" action="/Tetris/add_profile/"
-enctype="multipart/form-data">
+<!-- Intro Header -->
+    <header class="intro" >
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading" style=margin-top:50px>Edit your profile</h1>
+                        <p class="intro-text">A free, open source version of Tetris, modified into an online multiplayer game by Team TetriVS.<br></p>
+                        
+                        <form id="profile_form" method="post" action="/Tetris/edit_profile/"
+						enctype="multipart/form-data">
+						
+						{% csrf_token %}
+						{{ form.as_p }}
 
-{{ form.as_p }}
+						<!-- Provide a button to click to submit the form. -->
+						<input type="submit" name="submit" value="Finish editing profile. " class = "btn btn-default" />
+						</form>                 
 
-<!-- Provide a button to click to submit the form. -->
-<input type="submit" name="submit" value="Finish editing profile." />
-</form>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
 {% endblock %}

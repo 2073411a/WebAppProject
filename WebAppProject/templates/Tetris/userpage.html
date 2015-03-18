@@ -5,11 +5,13 @@
     <h2>Profile of {{ user.username }}</h2>
 
     {% if userprofile %}
-        <p> About user: <textarea name="myTextBox" cols="50" rows="5" style="border:3px dashed #F7730E;"> {{ userprofile.bio }} </textarea>
+        <p> About user: 
+        {{ userprofile.bio }}
+        </p>
         <br/>
 
         {% if userprofile.picture %}
-            <img src="{{ userprofile.picture.url }}"  />
+            <img src="{{ userprofile.picture.url }}"/>
         {% endif %}
     {% endif %}
     

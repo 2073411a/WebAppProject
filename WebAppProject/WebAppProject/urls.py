@@ -5,7 +5,7 @@ from registration.backends.simple.views import RegistrationView
 
 class MyRegistrationView(RegistrationView):
     def get_success_url(selfself,request, user):
-        return '/Tetris/'
+        return '/Tetris/edit_profile/'
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
@@ -14,4 +14,5 @@ urlpatterns = patterns('',
     url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
     (r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^$',include('Tetris.urls')),
+	
 )
