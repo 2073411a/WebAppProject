@@ -65,6 +65,11 @@ def test_database():
     for i in s:
         print(i.score),
         print(i.user.username)
+    u = authenticate(username = "test0",password = "test0pass")
+    s = Score.objects.filter(user = u).order_by('-score')
+    for i in s:
+        print(i.score),
+        print(i.leaderboard.seed)
 
 if __name__ == '__main__':
     print "Starting Rango population script..."

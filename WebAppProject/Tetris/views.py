@@ -5,21 +5,14 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from Tetris.forms import *
+import time
 
-def index(request):
-    #TODO RETURN PAGE
-    return render(request, 'Tetris/index.html')
-
-def play(request):
-    #TODO RETURN PAGE
-    return render(request, 'Tetris/play.html')
-
-def game(request, seed):
+def pieceGen(seed){
     context_dict={}
     # IMPORTANT #
     # NUMBER BELLOW HOW DEEP TO GO #
     # EDIT FOR BALANCING #
-    nopiecestotake = 69
+    nopiecestotake = 100
     #-----------------#
     f = file("piecelist.txt")
     line = f.readline()
@@ -31,28 +24,46 @@ def game(request, seed):
     f = file("piecelist.txt")
     line = f.readline()
     f.close()
-
     # Make it MUCH easier to compute, might change later if we come up with a more effecit calc
-    if len(seed) > 13:
-        seed = seed[:13]
-    for i in seed:
-        frontno *= ord(i)
-        while frontno >= 1000007:
-            print "OverFlow"
-            frontno -= 1000007
+    if seed.lower() == "dailychalenge":
+        day = time.strftime("%c").split()
+        s = day[0] + day[1] + day[-1]
+        a = int(day[2])
+        for i in s:
+            frontno *= (ord(i) + a)
+            while frontno > 1000007:
+                frontno -= 1000007
+    else:
+        if len(seed) > 30:
+            seed = seed[:30]
+        for i in seed:
+            frontno *= ord(i)
+            while frontno >= 1000007:
+                print "OverFlow"
+                frontno -= 1000007
     pointer = frontno
-
     while len(pieces) < nopiecestotake:
         if pointer >= 1000007:
             pointer = pointer%1000007
         pieces += line[pointer]
         pointer += frontno
-
     returnPieces = ""
     for p in pieces:
         returnPieces+=str(p)+","
-    context_dict = {'seed':seed, 'pieces':returnPieces[:-1]}  
-    return render(request, 'Tetris/play.html', context_dict)
+    context_dict = {'seed':seed, 'pieces':returnPieces[:-1]}
+}
+
+def index(request):
+    #TODO RETURN PAGE
+    return render(request, 'Tetris/index.html')
+
+def play(request):
+    #TODO RETURN PAGE
+    return render(request, 'Tetris/play.html')
+
+
+def game(request, seed):
+    return render(request, 'Tetris/play.html', pieceGen(seed))
 
 def about(request):
     return render(request, 'rango/about.html')
@@ -203,6 +214,8 @@ def challenge(request, seed, username):
     leaderboard = Leaderboard.objects.get(seed=seed)
     user = UserProfile.objects.get(user=username)
     bestScore = Score.objects.filter(leaderboard=leaderboard).filter(user=user).order_by('-score')[0]
+    context_dict = pieceGen(seed)
+    context_dict['score'] = bestScore
     return HttpResponse(seed + ":" + username)
 
 @login_required
