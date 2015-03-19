@@ -18,7 +18,7 @@ class Leaderboard(models.Model):
 
 class Score(models.Model):
     leaderboard = models.ForeignKey(Leaderboard, unique = False)
-    user = models.ForeignKey(UserProfile, unique = False)
+    user = models.ForeignKey(User, unique = False)
     score = models.IntegerField(default = 0)
-    def __unicode__(self):
-		return self.user.user.username + '_' + self.leaderboard.seed
+    #def __unicode__(self):
+	#	return self.user.user.username + '_' + self.leaderboard.seed
