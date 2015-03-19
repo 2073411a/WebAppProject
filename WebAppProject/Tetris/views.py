@@ -15,6 +15,7 @@ def play(request):
     return render(request, 'Tetris/play.html')
 
 def game(request, seed):
+    context_dict={}
     # IMPORTANT #
     # NUMBER BELLOW HOW DEEP TO GO #
     # EDIT FOR BALANCING #
@@ -50,7 +51,8 @@ def game(request, seed):
     returnPieces = ""
     for p in pieces:
         returnPieces+=str(p)+","
-    return HttpResponse(returnPieces[:-1])
+    context_dict = {'seed':seed, 'pieces':returnPieces[:-1]}  
+    return render(request, 'Tetris/play.html', context_dict)
 
 def about(request):
     return render(request, 'rango/about.html')
@@ -125,6 +127,43 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/')
+
+def user_login(request):
+        # If the request is a HTTP POST, try to pull out the relevant information.
+    if request.method == 'POST':
+        # Gather the username and password provided by the user.
+        # This information is obtained from the login form.
+        username = request.POST['username']
+        password = request.POST['password']
+
+        # Use Django's machinery to attempt to see if the username/password
+        # combination is valid - a User object is returned if it is.
+        user = authenticate(username=username, password=password)
+
+        # If we have a User object, the details are correct.
+        # If None (Python's way of representing the absence of a value), no user
+        # with matching credentials was found.
+        if user:
+            # Is the account active? It could have been disabled.
+            if user.is_active:
+                # If the account is valid and active, we can log the user in.
+                # We'll send the user back to the homepage.
+                login(request, user)
+                return HttpResponseRedirect('/Tetris/')
+            else:
+                # An inactive account was used - no logging in!
+                return HttpResponse("Your Tetris account is disabled.")
+        else:
+            # Bad login details were provided. So we can't log the user in.
+            print "Invalid login details: {0}, {1}".format(username, password)
+            return render(request, "Tetris/login.html", {"message":"Your username or Password was incorrect."})
+
+    # The request is not a HTTP POST, so display the login form.
+    # This scenario would most likely be a HTTP GET.
+    else:
+        # No context variables to pass to the template system, hence the
+        # blank dictionary object...
+        return render(request, 'Tetris/login.html', {})
 
 @login_required
 def userpage(request):

@@ -1,15 +1,34 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block content %}
-<form method="post" action=".">
-  {% csrf_token %} 
-  {{ form.as_p }}
+{% block body_block %}
 
-  <input type="submit" value="{% trans 'Log in' %}" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
+<!-- Intro Header -->
+    <header class="intro" >
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1>Login</h1>
+                        
+				<form method="post" action="." style=text-align: center>
+				  {% csrf_token %} 
+				  {{ form.as_p }}
 
-<p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
-<p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
+				  <input type="submit" value="{% trans 'Log in' %}" />
+				  <input type="hidden" name="next" value="{{ next }}" />
+				</form>
+
+				<p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
+				<p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
+                    
+						                        
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
 {% endblock %}

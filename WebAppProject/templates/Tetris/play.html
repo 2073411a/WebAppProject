@@ -79,7 +79,7 @@
         nx      = 10, // width of tetris court (in blocks)
         ny      = 20, // height of tetris court (in blocks)
         nu      = 5;  // width/height of upcoming preview (in blocks)
-        seed    = "0,1,2,3,4,5,6";
+        seed    = "{{pieces}}";
 
     //-------------------------------------------------------------------------
     // game variables (initialized during reset)
@@ -250,7 +250,7 @@ return { type: type, dir: DIR.UP, x: Math.round(random(0, nx - type.size)), y: 0
         show('start');
         setVisualScore();
         playing = false;
-        var url = "http://127.0.0.1:8000/Tetris/game/"+seed+"/score/" + score.toString();
+        var url = "http://127.0.0.1:8000/Tetris/game/"+"{{seed}}"+"/score/" + score.toString();
         window.location = url;
     }
 

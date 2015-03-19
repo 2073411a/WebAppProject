@@ -10,12 +10,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">Register here</h1>
+                        <h1>Register here</h1>
                         
                         <form method="post" action="." display: inline-block style= text-align:center>
   						{% csrf_token %}
   						{{ form.as_p }}
-						  <input type="submit" value="{% trans 'Submit' %}" class="btn btn-default />
+						  <input type="submit" value="{% trans 'Submit' %}" class="btn btn-default btn-large/>
 						</form>
 						                        
 
