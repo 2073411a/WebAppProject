@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from Tetris.forms import *
 import time
 
-def pieceGen(seed){
+def pieceGen(seed):
     context_dict={}
     # IMPORTANT #
     # NUMBER BELLOW HOW DEEP TO GO #
@@ -51,7 +51,7 @@ def pieceGen(seed){
     for p in pieces:
         returnPieces+=str(p)+","
     context_dict = {'seed':seed, 'pieces':returnPieces[:-1]}
-}
+    return context_dict
 
 def index(request):
     #TODO RETURN PAGE
