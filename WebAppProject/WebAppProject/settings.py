@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -121,6 +122,10 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 REGISTRATION_OPEN = True                # If True, users can register
 ACCOUNT_ACTIVATION_DAYS = 7     # One-week activation window; you may, of course, use a different value.
 REGISTRATION_AUTO_LOGIN = True  # If True, the user will be automatically logged in.
+<<<<<<< HEAD
 LOGIN_REDIRECT_URL = '/'  # The page you want users to arrive at after they successful log in
+=======
+LOGIN_REDIRECT_URL = '/Tetris/'  # The page you want users to arrive at after they successful log in
+>>>>>>> 6a63e854b9a09e93e747883bab50abd182f8d42e
 LOGIN_URL = '/accounts/login/'  # The page users are directed to if they are not logged in,
                                                                 # and are trying to access pages requiring authentication
