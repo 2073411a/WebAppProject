@@ -250,7 +250,7 @@ return { type: type, dir: DIR.UP, x: Math.round(random(0, nx - type.size)), y: 0
         show('start');
         setVisualScore();
         playing = false;
-        var url = "http://127.0.0.1:8000/Tetris/game/"+"{{seed}}"+"/score/" + score.toString();
+        var url = "http://127.0.0.1:8000/Tetris/score/"+"{{seed}}" +"/" + score.toString() + "/";
         window.location = url;
     }
 
