@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block body_block %}
+  <!-- Score section -->
+    <section id="about" class="text-center">
+        <div class="download-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div style="color: white; text-shadow: 1px 1px 0 #000;">
+                    <h3>WELL PLAYED! YOUR SCORE IS: {{score}}</h3>
+                    <h3>YOUR BEST SCORE IS: {{bestScore}}</h3>
+                    <h2>Play this seed again:</h2>
+                    <a href="/Tetris/game/{{seed}}" class="btn btn-default btn-lg">Play again!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

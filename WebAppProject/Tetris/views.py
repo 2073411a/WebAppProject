@@ -212,7 +212,7 @@ def edit_profile(request):
 
 
 def challenge(request, seed, username):
-    #Get's best score from user
+    #Gets best score from user
     leaderboard = Leaderboard.objects.get(seed=seed)
     user = UserProfile.objects.get(user=username)
     bestScore = Score.objects.filter(leaderboard=leaderboard).filter(user=user).order_by('-score')[0]
@@ -229,4 +229,7 @@ def score(request, seed, score):
     l.save()
     u =  User.objects.get(username=request.user.username)
     s = Score.objects.get_or_create(leaderboard=l,user = u, score = int(score))[0]
-    return HttpResponse(s.score)
+    bestScore = Score.objects.filter(leaderboard=l).filter(user=u).order_by('-score')[0]
+    context_dict={'score':s.score,'seed':seed,'bestScore':bestScore.score}
+
+    return render(request,'Tetris/score.html',context_dict)

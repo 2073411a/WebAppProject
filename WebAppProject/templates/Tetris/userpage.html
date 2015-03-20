@@ -3,19 +3,30 @@
 
 {% block body_block %}
 
-<div class="hero-unit">
+<section id="about" class="text-center">
+        <div class="download-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+
     <h2>Profile of {{ user.username }}</h2>
 
     {% if userprofile %}
-        <p> About user: 
+        <p> About user: </br>
         {{ userprofile.bio }}
         </p>
         <br/>
         {% if userprofile.picture %}
-            <img src="{{ userprofile.picture.url }}"/>
+            <img src="{{ userprofile.picture.url }}"/></br>
+        {% else %}
+            <p>Seems like you haven't added any details about your profile yet!</p>
         {% endif %}
     {% endif %}
     
-<a href="{% url 'add_profile' %}">Edit Profile</a>
+<a href="{% url 'edit_profile' %}">Edit Profile</a>
 </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
