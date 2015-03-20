@@ -223,6 +223,7 @@ def challenge(request, seed, username):
     l.save()
     return HttpResponse(seed + ":" + username)
 
+
 @login_required
 def score(request, seed, score):
     l = Leaderboard.objects.get_or_create(seed=seed)[0]
@@ -241,4 +242,4 @@ def leaderboard(request):
 	score_list = Score.objects.order_by('-score')[:10]
 	context_dict = {'scores':score_list}
 	
-	return render(request,'Tetris/Leaderboard.html',context_dict)
+	return render(request,'Tetris/leaderboard.html',context_dict)
