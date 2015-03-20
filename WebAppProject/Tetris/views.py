@@ -62,11 +62,17 @@ def index(request):
 def play(request):
     #TODO RETURN PAGE
     seed = str(int(time.time()*1000000)) * 2
-    return render(request, 'Tetris/play.html', pieceGen(seed))
+    current_site=get_current_site(request)
+    context_dict = pieceGen(seed)
+    context_dict['site']=current_site
+    return render(request, 'Tetris/play.html', context_dict)
 
 
 def game(request, seed):
-    return render(request, 'Tetris/play.html', pieceGen(seed))
+    current_site=get_current_site(request)
+    context_dict = pieceGen(seed)
+    context_dict['site']=current_site
+    return render(request, 'Tetris/play.html', context_dict)
 
 def about(request):
     return render(request, 'rango/about.html')
