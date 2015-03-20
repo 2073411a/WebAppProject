@@ -13,6 +13,7 @@ urlpatterns = patterns('',
                        url(r'^leaderboard/(?P<seed>[\w\-]+)/$', views.leaderboard),
                        url(r'^userpage/$', views.userpage,name="userpage"),
                        url(r'^#about/$', views.about,name='about'),
+					   url(r'^leaderboard$', views.leaderboard,name='leaderboard'),
                        url(r'^edit_profile/$', views.edit_profile, name='edit_profile'),
 					   url(r'^score/(?P<seed>[\w\-]+)/(?P<score>[\w\-]+)/$', views.score),
                        )

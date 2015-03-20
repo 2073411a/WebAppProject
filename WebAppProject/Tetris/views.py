@@ -236,3 +236,9 @@ def score(request, seed, score):
     context_dict['site']=current_site
 
     return render(request,'Tetris/score.html',context_dict)
+def leaderboard(request):
+	context_dict=[]
+	score_list = Score.objects.order_by('-score')[:10]
+	context_dict = {'scores':score_list}
+	
+	return render(request,'Tetris/Leaderboard.html',context_dict)
