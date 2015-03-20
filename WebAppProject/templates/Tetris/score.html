@@ -5,12 +5,18 @@
         <div class="download-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <div style="color: white; text-shadow: 1px 1px 0 #000;">
-                    <h3>WELL PLAYED! YOUR SCORE IS: {{score}}</h3>
-                    <h3>YOUR BEST SCORE IS: {{bestScore}}</h3>
-                    <h2>Play this seed again:</h2>
-                    <a href="/Tetris/game/{{seed}}" class="btn btn-default btn-lg">Play again!</a>
-                    </div>
+                    <h3>WELL PLAYED! YOUR SCORE FOR THIS SEED IS: {{score}}</h3>
+                    <h3>YOUR BEST SCORE FOR THIS SEED IS: {{bestScore}}</h3>
+                    <h3>Play this seed again:</h3>
+                    <a href="/Tetris/game/{{seed}}" class="btn btn-default btn-lg">Play again!</a><br></br>
+                    <h4>Or challenge your friend to beat your score!:</h4>
+                    <h5>Copy this url and send it to them: 
+					<br></br>
+                    <FORM> 
+					<INPUT TYPE="URL" PLACEHOLDER="{{site}}/Tetris/game/{{seed}}/{{user}}" size="55" readonly>
+					</h5>
+					</FORM>
+                    
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from Tetris.forms import *
+from django.contrib.sites.shortcuts import get_current_site
 import time
 
 def pieceGen(seed):
@@ -217,7 +218,7 @@ def challenge(request, seed, username):
     user = UserProfile.objects.get(user=username)
     bestScore = Score.objects.filter(leaderboard=leaderboard).filter(user=user).order_by('-score')[0]
     context_dict = pieceGen(seed)
-    context_dict['score'] = bestScore
+    context_dict['score'] = bestScore.score
     l.addChallenge()
     l.save()
     return HttpResponse(seed + ":" + username)
@@ -230,6 +231,8 @@ def score(request, seed, score):
     u =  User.objects.get(username=request.user.username)
     s = Score.objects.get_or_create(leaderboard=l,user = u, score = int(score))[0]
     bestScore = Score.objects.filter(leaderboard=l).filter(user=u).order_by('-score')[0]
-    context_dict={'score':s.score,'seed':seed,'bestScore':bestScore.score}
+    context_dict={'score':s.score,'seed':seed,'bestScore':bestScore.score,'user':u.username}
+    current_site=get_current_site(request)
+    context_dict['site']=current_site
 
     return render(request,'Tetris/score.html',context_dict)
