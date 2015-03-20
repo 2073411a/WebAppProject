@@ -15,6 +15,10 @@ class Leaderboard(models.Model):
     challanges = models.IntegerField(default = 0)
     def __unicode__(self):
         return self.seed
+    def addPlay(self):
+        self.plays += 1
+    def addChallenge(self):
+        self.challanges += 1
 
 class Score(models.Model):
     leaderboard = models.ForeignKey(Leaderboard, unique = False)

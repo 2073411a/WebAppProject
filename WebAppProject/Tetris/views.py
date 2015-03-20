@@ -218,11 +218,15 @@ def challenge(request, seed, username):
     bestScore = Score.objects.filter(leaderboard=leaderboard).filter(user=user).order_by('-score')[0]
     context_dict = pieceGen(seed)
     context_dict['score'] = bestScore
+    l.addChallenge()
+    l.save()
     return HttpResponse(seed + ":" + username)
 
 @login_required
-def score(request, seed, score, username):
-    l = Leaderboard.objects.get(seed=seed)
-    u = UserProfile.objects.get(user=username)
-    s = Score.objects.get_or_create(leaderboard = l,user = u, score = int(score))
-    return s
+def score(request, seed, score):
+    l = Leaderboard.objects.get_or_create(seed=seed)[0]
+    l.addPlay()
+    l.save()
+    u =  User.objects.get(username=request.user.username)
+    s = Score.objects.get_or_create(leaderboard=l,user = u, score = int(score))[0]
+    return HttpResponse(s.score)

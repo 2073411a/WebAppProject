@@ -14,6 +14,7 @@ urlpatterns = patterns('',
                        url(r'^userpage/$', views.userpage,name="userpage"),
                        url(r'^#about/$', views.about,name='about'),
                        url(r'^edit_profile/$', views.edit_profile, name='edit_profile'),
+					   url(r'^score/(?P<seed>[\w\-]+)/(?P<score>[\w\-]+)/$', views.score),
                        )
 
 if settings.DEBUG:
