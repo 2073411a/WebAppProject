@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% load i18n %}
+
 {% block body_block %}
 
 
@@ -9,11 +12,11 @@
         {{ userprofile.bio }}
         </p>
         <br/>
-
         {% if userprofile.picture %}
             <img src="{{ userprofile.picture.url }}"/>
         {% endif %}
     {% endif %}
     
+<a href="{% url 'add_profile' %}">Edit Profile</a>
 </div>
 {% endblock %}
