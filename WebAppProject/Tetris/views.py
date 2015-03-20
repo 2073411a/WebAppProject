@@ -25,7 +25,7 @@ def pieceGen(seed):
     line = f.readline()
     f.close()
     # Make it MUCH easier to compute, might change later if we come up with a more effecit calc
-    if seed.lower() == "dailychalenge":
+    if seed.lower() == "dailychallenge":
         day = time.strftime("%c").split()
         s = day[0] + day[1] + day[-1]
         a = int(day[2])
@@ -55,7 +55,9 @@ def pieceGen(seed):
 
 def index(request):
     #TODO RETURN PAGE
-    return render(request, 'Tetris/index.html')
+    randomSeed = str(int(time.time()*1000000)) * 2
+    context_dict = {'seed' : randomSeed}
+    return render(request, 'Tetris/index.html',context_dict)
 
 def play(request):
     #TODO RETURN PAGE
