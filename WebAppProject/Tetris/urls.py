@@ -4,10 +4,12 @@ from django.conf import settings
 #from django.conf.urls.static import static
 
 urlpatterns = patterns('',
-					   url(r'^play$',views.game,name='play'),
+					   url(r'^play$',views.play,name='play'),
 					   url(r'^$',views.index,name='index'),
                        url(r'^game/(?P<seed>[\w\-]+)/(?P<username>[\w\-]+)/$', views.challenge),
                        url(r'^game/(?P<seed>[\w\-]+)/$', views.game),
+					   url(r'^play/(?P<seed>[\w\-]+)/(?P<username>[\w\-]+)/$', views.challenge),
+                       url(r'^play/(?P<seed>[\w\-]+)/$', views.game, name='play'),
                        url(r'^leaderboard/(?P<seed>[\w\-]+)/$', views.leaderboard),
                        url(r'^userpage/$', views.userpage,name="userpage"),
                        url(r'^#about/$', views.about,name='about'),

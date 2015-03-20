@@ -31,20 +31,19 @@ def pieceGen(seed):
         a = int(day[2])
         for i in s:
             frontno *= (ord(i) + a)
-            while frontno > 1000007:
-                frontno -= 1000007
+            if frontno > 1000007:
+                frontno %= 1000007
     else:
         if len(seed) > 30:
             seed = seed[:30]
         for i in seed:
             frontno *= ord(i)
             while frontno >= 1000007:
-                print "OverFlow"
                 frontno -= 1000007
     pointer = frontno
     while len(pieces) < nopiecestotake:
         if pointer >= 1000007:
-            pointer = pointer%1000007
+            pointer %= 1000007
         pieces += line[pointer]
         pointer += frontno
     returnPieces = ""
@@ -61,7 +60,8 @@ def index(request):
 
 def play(request):
     #TODO RETURN PAGE
-    return render(request, 'Tetris/play.html')
+    seed = str(int(time.time()*1000000)) * 2
+    return render(request, 'Tetris/play.html', pieceGen(seed))
 
 
 def game(request, seed):
