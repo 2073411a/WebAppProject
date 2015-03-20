@@ -2,34 +2,70 @@
 
 {% block body_block %}
 
-<!-- Intro Header -->
-    <header class="intro" >
-        <div class="intro-body">
+<style>
+#block1 {
+    float:left;
+}
+
+#block2 {
+    float:right;
+}
+
+br {
+   display: block;
+   margin: 0px 0;
+}
+
+h5 {
+    word-spacing:30px;
+}
+
+h4 {
+    word-spacing:30px;
+    text-align:center;
+    padding-right: 50px;
+}
+</style>
+<section id="about" class="text-center">
+        <div class="download-section">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-						             
-					<h2>Top overall scores:</h2>
+                <div class="col-lg-8 col-lg-offset-2">
+					<div id="block1">	             
+					<h3>Top overall scores:</h3>
                     <ol>
                     {% if scores %}
-                        <h5 style=text-align:left>Username Score</h5>
+                        <h5 style=text-align:center>Username Score</h5>
                     	{% for score in scores %}
-                        <li style=text-align:left>
-                    	<h5> {{score.user}}: {{score.score}}</h5></br></br>
+                        <li style=text-align:center>
+                    	<h5>{{score.user}}  {{score.score}}</h5></br></br>
                         </li>
                     	{% endfor %}
                         </ol>
                     {% else %}
                     	<strong>There are no scores present.</strong>
-                    {% endif %}   
-                    </center>
-                    </body>
+                    {% endif %} 
+                    </div>
+
+                    <div id="block2">
+                    <h3>Most played seeds:</h3>
+                    {% if top %}
+                        <ol>
+                        <h5 style=text-align:center>Seed Plays</h5>
+                        <ol>
+                        {% for seed in top %}
+                        <li>
+                            <h4><a href="/Tetris/game/{{seed}}" class="btn btn-default">Play</a> {{seed.plays}}</h4></br></br>
+                        </li>
+                        {% endfor %}
+                        </ol>
+                        </ol>
+                    {% else %}
+                        <strong>No games have ever been played.</strong>
+                    {% endif %} 
+                    </div>
 
                     </div>
-                </div>
             </div>
         </div>
-    </header>
-<body>
-<center>
+    </section>
 {% endblock %}

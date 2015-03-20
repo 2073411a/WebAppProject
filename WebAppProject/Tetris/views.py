@@ -237,10 +237,10 @@ def score(request, seed, score):
     context_dict['site']=current_site
 
     return render(request,'Tetris/score.html',context_dict)
+
 def leaderboard(request):
-	context_dict=[]
-	score_list = Score.objects.order_by('-score')[:10]
-	context_dict = {'scores':score_list}
-	top_leaderboard = Leaderboard.objects.order_by('-plays')
-    context_dict['top_leaderboard'] = top_leaderboard
-	return render(request,'Tetris/leaderboard.html',context_dict)
+   score_list = Score.objects.order_by('-score')[:10]
+   context_dict = {'scores':score_list}
+   top_leaderboard = Leaderboard.objects.order_by('-plays')
+   context_dict['top'] = top_leaderboard
+   return render(request,'Tetris/leaderboard.html',context_dict)
