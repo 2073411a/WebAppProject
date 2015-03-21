@@ -227,7 +227,8 @@ def challenge(request, seed, u):
     context_dict['score'] = bestScore.score
     leaderboard.addChallenge()
     leaderboard.save()
-    return HttpResponse(bestScore.score)
+    context_dict['challenger']=user.username
+    return render(request,'Tetris/play.html',context_dict)
 
 
 @login_required
