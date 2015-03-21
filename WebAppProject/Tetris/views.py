@@ -200,21 +200,17 @@ def userpage(request):
     return render(request, 'Tetris/userpage.html', context_dict)
 
 def edit_profile(request):
+    try:
+	profile = request.user.userprofile
+    except UserProfile.DoesNotExist:
+	profile = UserProfile(user=request.user)
     if request.method == 'POST':
-        profile_form = UserProfileForm(request.POST)
-        if profile_form.is_valid():
-            if request.user.is_authenticated():
-                profile = profile_form.save(commit=False)
-                user = User.objects.get(id=request.user.id)
-                profile.user = user
-                try:
-                    profile.picture = request.FILES['picture']
-                except:
-                    pass
-                profile.save()
-                return index(request)
+	form = UserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return index(request)
     else:
-        form = UserProfileForm(request.GET)
+	form = UserProfileForm(instance=profile)
     return render(request, 'Tetris/edit_profile.html', {'form': form})
 
 
