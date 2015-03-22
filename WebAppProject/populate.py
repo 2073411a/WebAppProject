@@ -13,6 +13,7 @@ from django.contrib.auth import authenticate
 from Tetris.models import UserProfile,Leaderboard,Score
 
 def populate():
+    test = add_user_test("test")
     userTest0 = add_user("test0")
     userTest1 = add_user("test1")
     userTest2 = add_user("test2")
@@ -53,25 +54,18 @@ def add_user(username):
     User.objects.create_user(username, username + "@test.com", username + "pass")
     return authenticate(username = username,password = username + "pass")
 
+def add_user_test(n):
+    if(authenticate(username = n, password = n) != None):
+        return authenticate(username = n, passwprd = n)
+    User.objects.create_user(username = n, password = n)
+    return authenticate(username = n, password = n)
+
 def add_leaderboard(s,p,c):
     return Leaderboard.objects.get_or_create(seed = s, plays = p, challanges = c)[0]
 
 def add_score(l,u,s):
     return Score.objects.get_or_create(leaderboard=l,user=u,score=s)
 
-def test_database():
-    l = Leaderboard.objects.get_or_create(seed = "test4")[0]
-    s = Score.objects.filter(leaderboard = l).order_by('-score')
-    for i in s:
-        print(i.score),
-        print(i.user.username)
-    u = authenticate(username = "test0",password = "test0pass")
-    s = Score.objects.filter(user = u).order_by('-score')
-    for i in s:
-        print(i.score),
-        print(i.leaderboard.seed)
-
 if __name__ == '__main__':
     print "Starting Rango population script..."
     populate()
-    test_database()
