@@ -25,6 +25,9 @@
 <a href="{% url 'edit_profile' %}">Edit Profile</a>
 </div>
 <h3>Top overall scores of {{ user.username }}</h3>
+					<table>
+					<tr>
+					<td>
                     <ol>
                     {% if scores %}
                         <h5 style=text-align:center> Score</h5>
@@ -37,6 +40,9 @@
                     {% else %}
                     	<strong>There are no scores present.</strong>
                     {% endif %} 
+					</table>
+					</tr>
+					</td>
                     </div>
 
                     <div id="block2">
