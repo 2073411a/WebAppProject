@@ -54,10 +54,7 @@ def pieceGen(seed):
     return context_dict
 
 def index(request):
-    #TODO RETURN PAGE
-    randomSeed = str(int(time.time()*1000000)) * 2
-    context_dict = {'seed' : randomSeed}
-    return render(request, 'Tetris/index.html',context_dict)
+    return render(request, 'Tetris/index.html')
 
 def play(request):
     #TODO RETURN PAGE
