@@ -12,7 +12,7 @@ urlpatterns = patterns('',
                        url(r'^play/(?P<seed>[\w\-]+)/$', views.game, name='play'),
                        url(r'^leaderboard/(?P<seed>[\w\-]+)/$', views.seedleaderboard),
                        url(r'^userpage/$', views.userpage,name="userpage"),
-					   url(r'^userpage/(?P<uname>[\w\-]+)/$', views.otherpage)
+					   url(r'^userpage/(?P<uname>[\w\-]+)/$', views.otherpage),
                        url(r'^#about/$', views.about,name='about'),
 					   url(r'^leaderboard$', views.leaderboard,name='leaderboard'),
                        url(r'^edit_profile/$', views.edit_profile, name='edit_profile'),
