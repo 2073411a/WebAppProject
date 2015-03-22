@@ -196,7 +196,7 @@ def userpage(request):
 
     context_dict['user'] = user
     context_dict['userprofile'] = userprofile
-
+    context_dict['scores'] =  Score.objects.filter(user= user).order_by('-score')
     return render(request, 'Tetris/userpage.html', context_dict)
 
 def edit_profile(request):
@@ -210,7 +210,7 @@ def edit_profile(request):
             form.save()
             return index(request)
     else:
-	form = UserProfileForm(instance=profile)
+	       form = UserProfileForm(instance=profile)
     return render(request, 'Tetris/edit_profile.html', {'form': form})
 
 
