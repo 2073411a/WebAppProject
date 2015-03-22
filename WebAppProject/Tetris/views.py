@@ -230,6 +230,9 @@ def challenge(request, seed, u):
     leaderboard.addChallenge()
     leaderboard.save()
     context_dict['challenger']=user.username
+    current_site=get_current_site(request)
+    context_dict['site']=current_site
+
     return render(request,'Tetris/play.html',context_dict)
 
 
