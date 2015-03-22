@@ -2,12 +2,24 @@
 {% load i18n %}
 
 {% block body_block %}
+<style>
+#block1 {
+    float:left;
+}
+    
+#block2 {
+    float:right;
+}
+
+
+</style>
 
 <section id="about" class="text-center">
         <div class="download-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
 
+    <div id="block1">
     <h2>Profile of {{ user.username }}</h2>
 
     {% if userprofile %}
@@ -24,28 +36,24 @@
     
 <a href="{% url 'edit_profile' %}">Edit Profile</a>
 </div>
-<h3>Top overall scores of {{ user.username }}</h3>
-					<table>
-					<tr>
-					<td>
+<div id="block2">
+<h2>Top scores of {{ user.username }}</h2>
+					
                     <ol>
                     {% if scores %}
-                        <h5 style=text-align:center> Score</h5>
+                        <h4 style=margin-right:0px;word-spacing:10px>Score Seed</h4>
                     	{% for score in scores %}
                         <li style=text-align:center>
-                    	<h5>{{score.score}}</h5></br></br>
+                    	<h5>{{score.score}} &nbsp &nbsp &nbsp <a href="/Tetris/game/{{score.leaderboard.seed}}/{{score.user}}" class="btn btn-default">Beat this score</a></h5>
                         </li>
                     	{% endfor %}
                         </ol>
                     {% else %}
                     	<strong>There are no scores present.</strong>
                     {% endif %} 
-					</table>
-					</tr>
-					</td>
                     </div>
 
-                    <div id="block2">
+                    </div>
                 </div>
             </div>
         </div>

@@ -18,6 +18,7 @@ br {
 
 h5 {
     word-spacing:30px;
+    display:inline-block;
 }
 
 h4 {
@@ -37,7 +38,7 @@ h4 {
                         <h5 style=text-align:center>Username Score Seed</h5>
                     	{% for score in scores %}
                         <li style=text-align:center>
-                    	<h5>{{score.user}}  {{score.score}}</h5></br></br>
+                    	<h5>{{score.user}}  {{score.score}} <h6><a href="/Tetris/game/{{score.leaderboard.seed}}/{{score.user}}" class="btn btn-default">Beat this score</a></h6></h5>
                         </li>
                     	{% endfor %}
                         </ol>
