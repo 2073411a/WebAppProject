@@ -240,6 +240,18 @@ def score(request, seed, score):
     context_dict['site']=current_site
     return render(request,'Tetris/score.html',context_dict)
 
+def seedleaderboard(request, seed):
+    l = Leaderboard.get_or_create(seed = seed)
+    scores = Score.objects.filter(leaderboard = l).order_by('-score')
+    try:
+        u = User.objects.get(username = request.user.username)
+        bestScore = Score.objects.filter(leaderboard=l).filter(user=u).order_by('-score')[0]
+    except:
+        u = None
+        bestScore = None
+    context_dict = {'scores':scores,'best':bestScore,'seed':seed}
+    return render(request,'Tetris/seedLeaderboard.html',context_dict)
+
 def leaderboard(request):
    score_list = Score.objects.order_by('-score')[:10]
    context_dict = {'scores':score_list}
