@@ -30,27 +30,21 @@
 					<td>
                     <ol>
                     {% if scores %}
-<<<<<<< HEAD
-                        <h6 style=text-align:center>Username Score</h6>
-                    	{% for score in scores %}
-                        <li style=text-align:center>
-                    	<h6>{{score.user}}  {{score.score}}</h6></br>
-=======
                         <h5 style=text-align:center> Score</h5>
                     	{% for score in scores %}
                         <li style=text-align:center>
                     	<h5>{{score.score}}</h5></br></br>
->>>>>>> cda00e1c7d9f96dc92b731ea50140b1350dee2f8
                         </li>
                     	{% endfor %}
                         </ol>
                     {% else %}
                     	<strong>There are no scores present.</strong>
                     {% endif %} 
-                    </div>
-					</td>
-					</tr>
 					</table>
+					</tr>
+					</td>
+                    </div>
+
                     <div id="block2">
                 </div>
             </div>
