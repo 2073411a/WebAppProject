@@ -74,17 +74,6 @@ def game(request, seed):
 def about(request):
     return render(request, 'rango/about.html')
 
-def leaderboard(request, seed):
-    context_dict = {}
-    try:
-        leaderboard = Leaderboard.objects.get(seed=seed)
-        scores = Score.objects.filter(leaderboard = leaderboard).order_by('-score')
-        context_dict['scores'] = scores
-        context_dict['leaderboard'] = leaderboard
-    except leaderboard.DoesNotExist:
-        pass
-    return HttpResponse("TEMP")
-
 def register(request):
 
     # A boolean value for telling the template whether the registration was successful.
@@ -197,19 +186,37 @@ def userpage(request):
     context_dict['edit'] = True
     return render(request, 'Tetris/userpage.html', context_dict)
 
+def otherpage(request, uname):
+    context_dict = {}
+    try:
+        u = User.objects.get(username=uname)
+        topScores = Score.objects.filter(user = u).order_by('-score')
+        if len(topScores) > 5:
+            topScores = topScores[:5]
+        up = UserProfile.objects.get_or_create(user = u)
+    except:
+        u = None
+        topScores = None
+        up = None
+    context_dict['user'] = u
+    context_dict['userprofile'] = up
+    context_dict['scores'] = topScores
+    context_dict['edit'] = False
+    return render(request, 'Tetris/userpage.html', context_dict)
+    
 @login_required
 def edit_profile(request):
     try:
-	       profile = request.user.userprofile
+           profile = request.user.userprofile
     except UserProfile.DoesNotExist:
-	       profile = UserProfile(user=request.user)
+           profile = UserProfile(user=request.user)
     if request.method == 'POST':
-	form = UserProfileForm(request.POST, instance=profile)
+    form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
             return index(request)
     else:
-	       form = UserProfileForm(instance=profile)
+           form = UserProfileForm(instance=profile)
     return render(request, 'Tetris/edit_profile.html', {'form': form})
 
 
@@ -239,21 +246,6 @@ def score(request, seed, score):
     context_dict['site']=current_site
     return render(request,'Tetris/score.html',context_dict)
 
-def otherpage(request, uname):
-    context_dict = {}
-    try:
-        u = User.objects.get(username=uname)
-        topScores = Score.objects.filter(user = u).order_by('-score')[:5]
-        up = UserProfile.objects.get_or_create(user = u)
-    except:
-        u = None
-        topScores = None
-        up = None
-    context_dict['user'] = u
-    context_dict['userprofile'] = up
-    context_dict['scores'] = topScores
-    context_dict['edit'] = False
-    return render(request, 'Tetris/userpage.html', context_dict)
 
 def seedleaderboard(request, seed):
     l = Leaderboard.objects.get_or_create(seed = seed)[0]
@@ -270,6 +262,6 @@ def seedleaderboard(request, seed):
 def leaderboard(request):
    score_list = Score.objects.order_by('-score')[:10]
    context_dict = {'scores':score_list}
-   top_leaderboard = Leaderboard.objects.order_by('-plays')
+   top_leaderboard = Leaderboard.objects.order_by('-plays')[:15]
    context_dict['top'] = top_leaderboard
    return render(request,'Tetris/leaderboard.html',context_dict)

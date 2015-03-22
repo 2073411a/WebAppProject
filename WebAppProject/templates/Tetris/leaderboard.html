@@ -32,13 +32,13 @@ h4 {
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
 					<div id="block1">	             
-					<h3>Top overall scores:</h3>
+					<h3 style=text-align:center>Top overall scores</h3>
                     <ol>
                     {% if scores %}
-                        <h5 style=text-align:center>Username Score Seed</h5>
+                        <h5 style=text-align:center>Username Score</h5>
                     	{% for score in scores %}
                         <li style=text-align:center>
-                    	<h5>{{score.user}}  {{score.score}} <h6><a href="/Tetris/game/{{score.leaderboard.seed}}/{{score.user}}" class="btn btn-default">Beat this score</a></h6></h5>
+                    	<h5>{{score.user}}  {{score.score}} <h6><a href="/Tetris/game/{{score.leaderboard.seed}}/{{score.user}}" class="btn btn-default">Beat this score!</a></h6></h5>
                         </li>
                     	{% endfor %}
                         </ol>
@@ -48,14 +48,14 @@ h4 {
                     </div>
 
                     <div id="block2">
-                    <h3>Most played seeds:</h3>
+                    <h3>Most played seeds</h3>
                     {% if top %}
                         <ol>
-                        <h5 style=text-align:center>Seed Plays</h5>
+                        <h5 style=text-align:center>Seed Plays Leaderboard</h5>
                         <ol>
                         {% for seed in top %}
                         <li>
-                            <h4><a href="/Tetris/game/{{seed}}" class="btn btn-default">Play</a> {{seed.plays}}</h4></br></br>
+                            <h5><a href="/Tetris/game/{{seed}}" class="btn btn-default">Play</a> {{seed.plays}} <a href="/Tetris/leaderboard/{{seed}}" class="btn btn-default">Leaderboard</a></h5></br></br>
                         </li>
                         {% endfor %}
                         </ol>
