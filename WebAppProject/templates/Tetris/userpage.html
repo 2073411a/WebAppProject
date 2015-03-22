@@ -24,7 +24,22 @@
     
 <a href="{% url 'edit_profile' %}">Edit Profile</a>
 </div>
+<h3>Top overall scores of {{ user.username }}</h3>
+                    <ol>
+                    {% if scores %}
+                        <h5 style=text-align:center>Username Score</h5>
+                    	{% for score in scores %}
+                        <li style=text-align:center>
+                    	<h5>{{score.user}}  {{score.score}}</h5></br></br>
+                        </li>
+                    	{% endfor %}
+                        </ol>
+                    {% else %}
+                    	<strong>There are no scores present.</strong>
+                    {% endif %} 
+                    </div>
 
+                    <div id="block2">
                 </div>
             </div>
         </div>
