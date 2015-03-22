@@ -199,11 +199,12 @@ def userpage(request):
     context_dict['scores'] =  Score.objects.filter(user= user).order_by('-score')
     return render(request, 'Tetris/userpage.html', context_dict)
 
+@login_required
 def edit_profile(request):
     try:
-	profile = request.user.userprofile
+	       profile = request.user.userprofile
     except UserProfile.DoesNotExist:
-	profile = UserProfile(user=request.user)
+	       profile = UserProfile(user=request.user)
     if request.method == 'POST':
 	form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
