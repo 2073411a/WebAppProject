@@ -61,7 +61,7 @@ def add_user_test(n):
     return authenticate(username = n, password = n)
 
 def add_leaderboard(s,p,c):
-    return Leaderboard.objects.get_or_create(seed = s, plays = p, challanges = c)[0]
+    return Leaderboard.objects.get_or_create(seed = s, plays = p, challanges = c, likes = 0)[0]
 
 def add_score(l,u,s):
     return Score.objects.get_or_create(leaderboard=l,user=u,score=s)
