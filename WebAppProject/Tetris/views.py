@@ -193,7 +193,8 @@ def userpage(request):
 
     context_dict['user'] = user
     context_dict['userprofile'] = userprofile
-    context_dict['scores'] =  Score.objects.filter(user= user).order_by('-score')
+    context_dict['scores'] =  Score.objects.filter(user= user).order_by('-score')[:5]
+    context_dict['edit'] = True
     return render(request, 'Tetris/userpage.html', context_dict)
 
 @login_required
@@ -237,6 +238,22 @@ def score(request, seed, score):
     current_site=get_current_site(request)
     context_dict['site']=current_site
     return render(request,'Tetris/score.html',context_dict)
+
+def otherpage(request, uname):
+    context_dict = {}
+    try:
+        u = User.objects.get(username=uname)
+        topScores = Score.objects.filter(user = u).order_by('-score')[:5]
+        up = UserProfile.objects.get_or_create(user = u)
+    except:
+        u = None
+        topScores = None
+        up = None
+    context_dict['user'] = u
+    context_dict['userprofile'] = up
+    context_dict['scores'] = topScores
+    context_dict['edit'] = False
+    return render(request, 'Tetris/userpage.html', context_dict)
 
 def seedleaderboard(request, seed):
     l = Leaderboard.objects.get_or_create(seed = seed)[0]
