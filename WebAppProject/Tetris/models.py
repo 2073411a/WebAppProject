@@ -13,12 +13,15 @@ class Leaderboard(models.Model):
     seed = models.CharField(max_length=128, unique=True)
     plays = models.IntegerField(default = 0)
     challanges = models.IntegerField(default = 0)
+    likes = models.IntegerField(default = 0)
     def __unicode__(self):
         return self.seed
     def addPlay(self):
         self.plays += 1
     def addChallenge(self):
         self.challanges += 1
+    def addLike(self):
+        self.likes += 1
 
 class Score(models.Model):
     leaderboard = models.ForeignKey(Leaderboard, unique = False)
