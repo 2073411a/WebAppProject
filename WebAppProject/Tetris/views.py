@@ -241,7 +241,7 @@ def score(request, seed, score):
     return render(request,'Tetris/score.html',context_dict)
 
 def seedleaderboard(request, seed):
-    l = Leaderboard.get_or_create(seed = seed)
+    l = Leaderboard.objects.get_or_create(seed = seed)[0]
     scores = Score.objects.filter(leaderboard = l).order_by('-score')
     try:
         u = User.objects.get(username = request.user.username)
