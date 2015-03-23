@@ -270,4 +270,56 @@ def leaderboard(request):
    return render(request,'Tetris/leaderboard.html',context_dict)
 
 def error404(request):
-    return render(request,'Tetris/error404.html')
+    s = request.path.split('/')[-1]
+    pages = {'index':0,'play':0,'game':0,'about':0,'userpage':0,'daily':0,'challenge':0,'leaderboard':0,'login':0,'register':0,'logout':0}
+    k = pages.keys()
+    for i in s:
+        for u in k:
+            if pages[u] < len(u):
+                if i == u[pages[u]]:
+                    pages[u] += 1
+    for u in k:
+        pages[u] = (1.0*pages[u])/len(u)
+    pages['404'] = 0.5
+    m = '404'
+    for u in k:
+        if pages[u] > pages[m]:
+            m = u
+    if m == '404':
+        for u in k:
+            pages[u] = [0]*len(u) + [0]
+        for i in s:
+            for u in k:
+                if pages[u][-1] < len(u):
+                    for t in range(pages[u][-1],len(u)):
+                        if u[t] == i and pages[u][t] != 1:
+                            pages[u][-1] = t
+                            pages[u][t] = 1
+                            break
+        for u in k:
+            n = 0.0
+            for i in pages[u][:-1]:
+                n += i
+            pages[u] = 1.0*n/len(s)
+            pages[m] = 0.5
+        for u in k:
+            if pages[u] > pages[m]:
+                m = u
+    if m == 'leaderboard':
+        return leaderboard(request)
+    elif m == 'challenge' or m == 'daily':
+        return game(request,'dailychallenge')
+    elif m == 'game' or m == 'play':
+        return play(request)
+    elif m == 'about' or m == 'index':
+        return index(request)
+    elif m == 'userpage':
+        return userpage(request)
+    elif m == 'login':
+        return user_login(request)
+    elif m == 'logout':
+        return user_logout(request)
+    elif m == 'register':
+        return register(request)
+    else:
+        return render(request,'Tetris/error404.html')
