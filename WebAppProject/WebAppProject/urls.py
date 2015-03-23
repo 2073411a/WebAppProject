@@ -14,5 +14,6 @@ urlpatterns = patterns('',
     url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
     (r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^$',include('Tetris.urls')),
-	
 )
+
+handler404 = 'Tetris.views.error404'
