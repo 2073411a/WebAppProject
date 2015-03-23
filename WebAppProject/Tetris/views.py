@@ -268,3 +268,6 @@ def leaderboard(request):
    top_leaderboard = Leaderboard.objects.order_by('-plays')[:15]
    context_dict['top'] = top_leaderboard
    return render(request,'Tetris/leaderboard.html',context_dict)
+
+def error404(request):
+    return render(request,'Tetris/error404.html')
