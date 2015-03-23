@@ -211,7 +211,7 @@ def edit_profile(request):
     except UserProfile.DoesNotExist:
            profile = UserProfile(user=request.user)
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=profile)
+        form = UserProfileForm(request.POST, request.FILES or None, instance=profile)
         if form.is_valid():
             form.save()
             return index(request)
