@@ -269,6 +269,10 @@ def leaderboard(request):
    context_dict['top'] = top_leaderboard
    return render(request,'Tetris/leaderboard.html',context_dict)
 
+#By far the best part of the project 
+#If the user mistypes the url, this will attemept to redirect them to the page they were looking for
+#Very simple algorithm, just checks how closes to any given word it is, then, if it is at least 50%, renders the appriorate view
+#If none, checks again, this time taking into accont missing letters etc.
 def error404(request):
     s = request.path.split('/')[-1]
     pages = {'index':0,'play':0,'game':0,'about':0,'userpage':0,'daily':0,'challenge':0,'leaderboard':0,'login':0,'register':0,'logout':0}
