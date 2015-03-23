@@ -193,7 +193,7 @@ def otherpage(request, uname):
         topScores = Score.objects.filter(user = u).order_by('-score')
         if len(topScores) > 5:
             topScores = topScores[:5]
-        up = UserProfile.objects.get_or_create(user = u)
+        up = UserProfile.objects.get(user = u)
     except:
         u = None
         topScores = None

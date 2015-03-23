@@ -61,7 +61,7 @@
 					
                     {% if scores %}
                     <ol>
-                        <h4 style=margin-right:0px;word-spacing:10px>Score Seed</h4>
+                        <h4 style=margin-right:80px;word-spacing:50px>Score Seed</h4>
                     	{% for score in scores %}
                         <li style=text-align:center>
                     	<h5>{{score.score}} &nbsp &nbsp &nbsp <a href="/Tetris/game/{{score.leaderboard.seed}}/{{score.user}}" class="btn btn-default">Beat this score</a></h5>

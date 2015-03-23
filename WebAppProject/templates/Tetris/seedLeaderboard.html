@@ -10,7 +10,7 @@
                         <h5 style=text-align:center>Username Score</h5>
                     	{% for score in scores %}
                         <li style=text-align:center>
-                    	<h5>{{score.user}}  {{score.score}}</h5></br></br>
+                    	<h5><a href="/Tetris/userpage/{{score.user}}">{{score.user}}</a>   {{score.score}}</h5></br></br>
                         </li>
                     	{% endfor %}
                         </ol>
