@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block body_block %}
-{% if edit %}
+
 <style>
 
 #block1 {
@@ -10,20 +10,16 @@
 }
     
 #block2 {
-    float:right;
+    text-align:center;
 }
 
 </style>
-{% endif %}
 
 <section id="about" class="text-center">
         <div class="download-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
 
-    {% if edit %}
-    <div id="block1">
-    {% endif %}
     <h2>Profile of {{ user.username }}</h2>
 
     {% if userprofile %}
@@ -34,47 +30,38 @@
         {% if userprofile.picture %}
             <img src="{{ userprofile.picture.url }}"/></br>
         {% else %}
-            <p>Seems like {% if edit %}you haven't{% else %}the user hasn't{% endif %} added any details about the profile yet!</p>
+            <p> Seems like {% if edit %} you haven't {% else %} the user hasn't{% endif %} added a profile picture yet </p>
         {% endif %}
-    {% endif %}
+    {% else %}
+            <p>Seems like{% if edit %} you haven't{% else %} the user hasn't{% endif %} added any details about the profile yet!</p>
+        {% endif %}
     
 {% if edit %}    
 <a href="{% url 'edit_profile' %}">Edit Profile</a>
-{% else %}
+{% endif %}
                 </div>
             </div>
         </div>
     </div>
 </section>
-{% endif %}
+
 </div>
 
-{% if edit %}
 <div id="block2">
-{% else %}
-<section id="about" class="text-center">
-        <div class="download-section">
-            <div class="container">
-                <div class="col-lg-8 col-lg-offset-2">
-{% endif %}
 <h2>Top scores of {{ user.username }}</h2>
-					
+                    
                     {% if scores %}
                     <ol>
                         <h4 style=margin-right:80px;word-spacing:50px>Score Seed</h4>
-                    	{% for score in scores %}
+                        {% for score in scores %}
                         <li style=text-align:center>
-                    	<h5>{{score.score}} &nbsp &nbsp &nbsp <a href="/Tetris/game/{{score.leaderboard.seed}}/{{score.user}}" class="btn btn-default">Beat this score</a></h5>
+                        <h5>{{score.score}} &nbsp &nbsp &nbsp <a href="/Tetris/game/{{score.leaderboard.seed}}/{{score.user}}" class="btn btn-default">Beat this score</a></h5>
                         </li>
-                    	{% endfor %}
+                        {% endfor %}
                         </ol>
                     {% else %}
-                    	<strong>There are no scores present.</strong>
+                        <strong>There are no scores present.</strong>
                     {% endif %} 
+</div>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 {% endblock %}
