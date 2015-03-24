@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, connection
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
@@ -14,6 +14,9 @@ class Leaderboard(models.Model):
     plays = models.IntegerField(default = 0)
     challanges = models.IntegerField(default = 0)
     likes = models.IntegerField(default = 0)
+    creation_date = models.DateTimeField(auto_now_add = True, editable=False)
+    class Meta:
+      get_latest_by = 'creation_date'
     def __unicode__(self):
         return self.seed
     def addPlay(self):

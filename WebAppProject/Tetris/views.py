@@ -54,7 +54,11 @@ def pieceGen(seed):
     return context_dict
 
 def index(request):
-    return render(request, 'Tetris/index.html')
+    score_list = Score.objects.order_by('-score')[:5]
+    context_dict = {'scores':score_list}
+    latest_leaderboard = Leaderboard.objects.order_by('-creation_date')[:5]
+    context_dict['latest'] = latest_leaderboard
+    return render(request, 'Tetris/index.html', context_dict)
 
 def play(request):
     #TODO RETURN PAGE
