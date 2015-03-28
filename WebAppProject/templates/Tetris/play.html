@@ -1,12 +1,8 @@
-<!DOCTYPE html>
 {% extends "base.html" %}
 {% load i18n %}
 
 {% block body_block %}
-<html>
-<head>
 <br><br><br>
-  <title>Javascript Tetris</title>
   <style>
     body      { font-family: Helvetica, sans-serif; }
     #tetris   { margin: 1em auto; padding: 1em; border: 4px solid black; border-radius: 10px; background-color: #F8F8F8; }
@@ -35,16 +31,13 @@ x; } #canvas { width: 150px; height: 300px; } } /* 15px chunks */
 {% else %}
 <h3 style=text-align:center;padding-top:40px>Set a score for your friends to beat!</h3>
 {% endif %}
-</head>
-
-<body>
 
   <div id="tetris">
     <div id="menu">
       <p id="start"><a href="javascript:play();">Press Space to Play.</a></p>
       <p><canvas id="upcoming"></canvas></p>
-      <p><font color="black"> score <span id="score">00000</span></p>
-      <p>rows <span id="rows">0</span></p></font>
+      <p style=color:black;> score <span id="score">00000</span></p>
+      <p style=color:black;>rows <span id="rows">0</span></p>
     </div>
     <canvas id="canvas">
       Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
