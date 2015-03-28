@@ -3,18 +3,6 @@
 
 {% block body_block %}
 
-<style>
-
-#block1 {
-    float:left;
-}
-    
-#block2 {
-    text-align:center;
-}
-
-</style>
-
 <section id="about" class="text-center">
         <div class="download-section">
             <div class="container">
@@ -23,12 +11,11 @@
     <h2>Profile of {{ user.username }}</h2>
 
     {% if userprofile %}
-        <p> About user: </br>
-        {{ userprofile.bio }}
-        </p>
+        <p>About user:<br> 
+        {{ userprofile.bio }}</p>
         
         {% if userprofile.picture %}
-            <img src="{{ userprofile.picture.url }}"/></br>
+            <img src="{{ userprofile.picture.url }}" alt="Failed fetching image" style=text-align:center/><br>
         {% else %}
             <p> Seems like {% if edit %} you haven't {% else %} the user hasn't{% endif %} added a profile picture yet </p>
         {% endif %}
@@ -42,12 +29,9 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
-</div>
-
-<div id="block2">
+<div id="block3">
 <h2>Top scores of {{ user.username }}</h2>
                     
                     {% if scores %}
@@ -55,13 +39,13 @@
                         <ol>
                         {% for score in scores %}
                         <li>
-                        <h5>{{score.score}} &nbsp &nbsp &nbsp <a href="/Tetris/game/{{score.leaderboard.seed}}/{{score.user}}" class="btn btn-default">Beat this score</a></h5>
+                        <h5>{{score.score}} &nbsp; &nbsp; &nbsp; <a href="/Tetris/game/{{score.leaderboard.seed}}/{{score.user}}" class="btn btn-default">Beat this score</a></h5>
                         </li>
                         {% endfor %}
                         </ol>
                     {% else %}
                         <strong>There are no scores present.</strong>
                     {% endif %} 
-</div>
+    </div>
 
 {% endblock %}

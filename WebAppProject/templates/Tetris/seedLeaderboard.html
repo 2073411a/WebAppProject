@@ -5,28 +5,27 @@
         <div class="download-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
+                {% if best %}   
+                <h4>Your best score for this seed is: {{best.score}}</h4>
+                {% else %}
+                <h4>You have no scores for this seed yet</h4>
+                {% endif %}
+                <h4>Play this seed: </h4>
+                <h4><a href="/Tetris/game/{{seed}}" class="btn btn-default btn-lg">Play now!</a></h4>
+                
 				<h4>Top scores for this seed</h4>
-				{% if scores %}
+                {% if scores %}
                         <h5 style=text-align:center>Username Score</h5>
+                        <ol>
                     	{% for score in scores %}
                         <li style=text-align:center>
-                    	<h5><a href="/Tetris/userpage/{{score.user}}">{{score.user}}</a>   {{score.score}}</h5></br></br>
+                    	<h5><a href="/Tetris/userpage/{{score.user}}">{{score.user}}</a>   {{score.score}}</h5>
                         </li>
                     	{% endfor %}
-                        </ol>
+                </ol>
                 {% else %}
-                    	<strong>There are no scores for this seed.</strong>
+                        <strong>There are no scores for this seed.</strong>
                 {% endif %} 
-				
-				{% if best %}	
-				<h4>Your best score for this seed is: {{best.score}}</h4>
-				{% else %}
-				<h4>You have no scores for this seed yet</h4>
-				{% endif %}
-				<h4>Play this seed: </h4>
-				<h4><a href="/Tetris/game/{{seed}}" class="btn btn-default btn-lg">Play again!</a>
-
-				<ol>
 
 			</div>
             </div>
