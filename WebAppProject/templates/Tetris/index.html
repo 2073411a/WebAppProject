@@ -1,29 +1,11 @@
 {% extends "base.html" %}
 {% block body_block %}
 
-<style>
-
-#block1 {
-    float:right;
-    margin-right: 20px;
-    margin-top:40px;
-}
-
-</style>
-
 <!-- Intro Header -->
     <header class="intro">
         <div class="intro-body">
             <div class="container">
                 <div class="row">
-                        <div id="block1">
-                        <h5>Recently played:</h5>
-                        <ol>
-                        {% for seed in latest %}
-                        <h6><li><h6 style=margin-right:25px;><a href="/Tetris/game/{{seed}}" class="btn btn-default">Play</a></li> </h6>
-                        {% endfor %}
-                        </ol>
-                        </div>
 
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">TetriVs</h1>
@@ -33,10 +15,17 @@
                         <a href="/Tetris/play" class="btn btn-default btn-lg">Play now!</a>
                         <a href="/Tetris/play/dailychallenge" class="btn btn-default btn-lg">Daily Challenge!</a>
                         <a href="/Tetris/leaderboard/dailychallenge" class="btn btn-default btn-lg">Daily Leaderboard!</a>
-                        <br></br>
+                        <br><br>
                         <a href="#about" class="btn btn-default btn-lg page-scroll">About?
-                            <i class="fa fa-angle-double-down animated"></i></a>
-                        </a>
+                            <i class="fa fa-angle-double-down animated"></i></a>  
+                    </div>
+                    <div id="block1">
+                        <h5>Recently played:</h5>
+                        <ol>
+                        {% for seed in latest %}
+                        <li><h6 style=margin-right:25px;><a href="/Tetris/game/{{seed}}" class="btn btn-default">Play</a></h6></li>
+                        {% endfor %}
+                        </ol>
                     </div>
                 </div>
             </div>
@@ -51,11 +40,12 @@
                     <div style="color: white; text-shadow: 1px 1px 0 #000;">
                     <h2>About</h2>
                     <h3>The team</h3>
-                    <p>Alex Leet</br>Duncan Adamson</br>Praxitelis Kourtelos</br>Chris Nicolaides</p>
+                    <p>Alex Leet<br>Duncan Adamson<br>Praxitelis Kourtelos<br>Chris Nicolaides</p>
                     </div>
                     <a href="https://github.com/2073411a/WebAppProject" class="btn btn-default btn-lg">Github</a>
                 </div>
             </div>
         </div>
     </section>
+
 {% endblock %}
