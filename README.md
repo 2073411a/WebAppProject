@@ -1,31 +1,21 @@
-# WebAppProject
+# WebAppProject - TetriVS
 
-  Currently working on: 
-  # Edit this and add the files you're editing: 
-  # Example: JsTetris.js - Alex
+This is a Web Application made by Team A2 of Glasgow University Web Development course students. It is a free, open-source multi-player Tetris with scorekeeping and leaderboards.
 
-  Meeting times:
-    Mondays, Lab time.
-    Thursdays - 2pm onwards.
+To ensure that the application runs properly, please ensure you have a configuration that's as close to the requirements list in the requirements.txt as possible (slightly different versions might work but not necessarily).
 
-To Do list
+After the application is cloned and requirements set, the application can be run from the terminal with the command:
+python manage.py runserver
+After that, with your browser, go to the address http://127.0.0.1:8000/. That's where the application will be run.
 
-Top Priority
+To flush the database (i.e all users, scores and etc) run the command:
+python manage.py flush
+However, after you do that, you'll have to make migrations and migrate with the following commands:
+python manage.py makemigrations and python manage.py migrate
 
-  - Get the Game Working
-  - Get the Leader Boards Working
-  - Get the HTML for the pages
+If you so wish, after flushing, you can repopulate the database with the population script given. For that just run the command:
+python populate.py
 
-Medium
+The application can be tested with the following command:
+python manage.py test Tetris
 
-  - Front Page Seed Algorithms etc.
-  - Send Challanges without logging out
-    - We're going to need a model for unregistered or a view specifically for this, view is easier to make, but also to cheat, not that that matters that much?
-  - Get some kind of encryption of the scores to make it harder to input fake scores
-
-Low
-  - Front Page Leader boards (Shouldn't be to hard, but not top priority)
-  - Any other smaller tasks
-
-Whose on what
-  - TODO
