@@ -19,3 +19,5 @@ python populate.py
 The application can be tested with the following command:
 python manage.py test Tetris
 
+The following is the link to the deployed application in case you want to view the application straight-away:
+http://tetrivs.pythonanywhere.com/
